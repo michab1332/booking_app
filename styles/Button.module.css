@@ -1,0 +1,13 @@
+.button {
+    background-color: black;
+    border: none;
+    color: #fff;
+    width: 10rem;
+    height: 2.5rem;
+    transition: transform .3s ease;
+}
+
+.button:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
