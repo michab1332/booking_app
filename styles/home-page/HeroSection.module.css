@@ -5,19 +5,27 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .wrapper {
     max-width: var(--max-width);
-    height: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: .5rem;
+    padding: 0 .5rem;
+    z-index: 1;
 }
 
 .title {
     font-size: 3rem;
 }
 
-.desc {}
+.blocksSVG {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    z-index: 0;
+}

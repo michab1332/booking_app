@@ -1,5 +1,8 @@
-import Button from "@/shared-components/button";
+import Image from "next/image";
+
 import styles from "../../styles/home-page/HeroSection.module.css";
+import Button from "@/shared-components/button";
+import BlocksSVG from "../../public/blocks.svg";
 
 const HeroSection = () => {
     return (
@@ -11,6 +14,7 @@ const HeroSection = () => {
                 <p className={styles.desc}>Feel as a super star everyday, with your own <br></br> look and style</p>
                 <Button text="Zarezerwuj termin" />
             </section>
+            <Image className={styles.blocksSVG} src={BlocksSVG} alt="blocks svg" />
         </div>
     );
 }
