@@ -22,6 +22,10 @@
     font-size: 3rem;
 }
 
+.desc {
+    margin-bottom: 1rem;
+}
+
 .blocksSVG {
     position: absolute;
     right: 0;

@@ -1,8 +1,8 @@
-import style from "../../styles/Button.module.css";
+import style from "../../styles/shared-components/Button.module.css";
 
 interface IButton {
     text: string,
-    func?: () => {}
+    func?: Function
 }
 
 const Button = ({ text, func }: IButton) => {
