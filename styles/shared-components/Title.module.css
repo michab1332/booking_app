@@ -1,0 +1,22 @@
+.wrapper {
+    background-color: var(--background-color-primary);
+    z-index: 0;
+}
+
+.title {
+    background-color: var(--background-color-primary);
+    position: relative;
+    padding: 0 1rem;
+}
+
+.title::before {
+    content: "";
+    width: 89vw;
+    height: .2rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 50%;
+    background-color: #000;
+    z-index: -1;
+}
