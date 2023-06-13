@@ -1,6 +1,8 @@
 .wrapper {
     background-color: var(--background-color-primary);
     z-index: 0;
+    display: flex;
+    justify-content: center;
 }
 
 .title {
@@ -11,7 +13,8 @@
 
 .title::before {
     content: "";
-    width: 89vw;
+    width: 90vw;
+    max-width: var(--max-width);
     height: .2rem;
     position: absolute;
     left: 50%;

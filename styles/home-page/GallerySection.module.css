@@ -1,7 +1,30 @@
 .container {
     background-color: var(--background-color-primary);
     width: 100%;
-    min-height: 90vh;
+    min-height: 80vh;
     display: flex;
     justify-content: center;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: var(--max-width);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.images {
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: auto auto auto;
+    grid-auto-flow: dense;
+    gap: .2rem;
+    padding-top: 1rem;
+}
+
+.image {
+    position: relative;
+    cursor: pointer;
 }
