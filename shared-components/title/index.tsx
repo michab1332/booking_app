@@ -1,13 +1,15 @@
 import styles from "../../styles/shared-components/Title.module.css";
 
 interface ITitle {
-    text: string
+    text: string;
+    color: string
 }
 
-const Title = ({ text }: ITitle) => {
+const Title = ({ text, color }: ITitle) => {
+
     return (
         <div className={styles.wrapper}>
-            <h2 className={styles.title}>{text}</h2>
+            <h2 style={{ backgroundColor: color }} className={styles.title}>{text}</h2>
         </div>);
 }
 

@@ -1,5 +1,4 @@
 .wrapper {
-    background-color: var(--background-color-primary);
     z-index: 0;
     display: flex;
     justify-content: center;

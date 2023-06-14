@@ -1,7 +1,7 @@
 .container {
     background-color: var(--background-color-primary);
     width: 100%;
-    min-height: 80vh;
+    min-height: 60vh;
     display: flex;
     justify-content: center;
 }
@@ -20,11 +20,19 @@
     justify-content: center;
     grid-template-columns: auto auto auto;
     grid-auto-flow: dense;
-    gap: .2rem;
+    gap: .1rem;
     padding-top: 1rem;
 }
 
 .image {
     position: relative;
+    cursor: pointer;
+    user-select: none;
+}
+
+.link {
+    border-bottom: 2px solid #000;
+    font-weight: bold;
+    margin: 1rem 0;
     cursor: pointer;
 }

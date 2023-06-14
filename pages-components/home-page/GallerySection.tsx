@@ -63,10 +63,11 @@ const GallerySection = () => {
     return (
         <div className={styles.container}>
             <section className={styles.wrapper}>
-                <Title text="GALERIA" />
+                <Title text="GALERIA" color="#F2E5E2" />
                 <div ref={galleryRef} className={styles.images}>
                     {data.map((item, index) => <GalleryItem item={item} sizeOfImage={sizeOfImage} key={index} />)}
                 </div>
+                <p className={styles.link}>zobacz więcej zdjęć</p>
             </section>
         </div>
     );
