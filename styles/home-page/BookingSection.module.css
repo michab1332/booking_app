@@ -1,6 +1,6 @@
 .container {
     width: 100%;
-    height: 90vh;
+    height: 80vh;
     background-color: var(--background-color-secondary);
     display: flex;
     justify-content: center;
@@ -12,5 +12,54 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 1.5rem;
+    padding: 1.5rem 1rem;
+}
+
+.form {
+    padding: 1rem 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.month {
+    font-size: 2rem;
+}
+
+.buttonsBox {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    gap: 2rem;
+    overflow-x: scroll;
+}
+
+.buttonsBox::-webkit-scrollbar {
+    display: none;
+}
+
+.label {
+    padding: 0 3rem;
+    border: 2px solid #000;
+    border-radius: .5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.labelText {
+    text-align: center;
+    font-weight: bold;
+}
+
+.radio {
+    display: none;
+}
+
+.checked {
+    background-color: var(--background-color-pink);
 }
