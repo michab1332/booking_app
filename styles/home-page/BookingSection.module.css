@@ -54,6 +54,7 @@
 .labelText {
     text-align: center;
     font-weight: bold;
+    transition: .4s transform;
 }
 
 .radio {
@@ -62,4 +63,8 @@
 
 .checked {
     background-color: var(--background-color-pink);
+}
+
+.label:hover .labelText {
+    transform: scale(1.2);
 }
