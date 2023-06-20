@@ -14,7 +14,7 @@ interface IGalleryItem {
     sizeOfImage: number;
 }
 
-const GalleryItem = ({ item, sizeOfImage }: IGalleryItem) => {
+const GalleryItem: React.FC<IGalleryItem> = ({ item, sizeOfImage }) => {
     const imageRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {

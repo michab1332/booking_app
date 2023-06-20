@@ -34,7 +34,7 @@ const timetable: ITimetable[] = [
     }
 ]
 
-const BookingItem = ({ stateValue, value, onChange }: IBookingItem) => {
+const BookingItem: React.FC<IBookingItem> = ({ stateValue, value, onChange }) => {
     return (
         <label className={stateValue === value ? styles.label + " " + styles.checked : styles.label}>
             <p className={styles.labelText}>{value}</p>
@@ -43,7 +43,7 @@ const BookingItem = ({ stateValue, value, onChange }: IBookingItem) => {
     );
 }
 
-const BookingSection = () => {
+const BookingSection: React.FC = () => {
     const [day, setDay] = useState("18 czerwca");
     const [hour, setHour] = useState("8:00");
     const [hours, setHours] = useState([]);
@@ -74,14 +74,6 @@ const BookingSection = () => {
                         })}
                     </div>
                     <div className={styles.buttonsBox}>
-                        {/* <label className={styles.label}>
-                            <p className={styles.labelText}>8:00</p>
-                            <input className={styles.radio} onChange={onHourChange} type="radio" name="hour" value="8:00" checked={hour === "8:00"} />
-                        </label>
-                        <label className={styles.label}>
-                            <p className={styles.labelText}>18:30</p>
-                            <input className={styles.radio} onChange={onHourChange} type="radio" name="hour" value="18:30" checked={hour === "18:30"} />
-                        </label> */}
                         {hours.map((item, index) => <BookingItem key={index} stateValue={hour} value={item} onChange={onHourChange} />)}
                     </div>
                     <Button text="Zarezerwuj" />

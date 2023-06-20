@@ -5,7 +5,7 @@ interface ITitle {
     color: string
 }
 
-const Title = ({ text, color }: ITitle) => {
+const Title: React.FC<ITitle> = ({ text, color }) => {
 
     return (
         <div className={styles.wrapper}>

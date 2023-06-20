@@ -49,7 +49,7 @@ const data: IData[] = [
     },
 ];
 
-const GallerySection = () => {
+const GallerySection: React.FC = () => {
     const galleryRef = useRef<HTMLDivElement>(null);
     const [sizeOfImage, setSizeOfImage] = useState<number>(0);
 

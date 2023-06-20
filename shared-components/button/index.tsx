@@ -5,7 +5,7 @@ interface IButton {
     func?: Function
 }
 
-const Button = ({ text, func }: IButton) => {
+const Button: React.FC<IButton> = ({ text, func }) => {
     return (
         <button className={style.button} onClick={function () {
             if (func) func();

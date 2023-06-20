@@ -3,7 +3,7 @@ import Image from "next/image";
 import styles from "../../styles/shared-components/Navbar.module.css";
 import Logo from "../../public/kb_logo.svg";
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
     return (
         <div className={styles.container}>
             <header className={styles.header}>

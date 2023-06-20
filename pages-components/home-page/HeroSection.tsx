@@ -5,7 +5,7 @@ import Button from "@/shared-components/button";
 import BlocksSVG from "../../public/blocks.svg";
 import Navbar from "@/shared-components/navbar";
 
-const HeroSection = () => {
+const HeroSection: React.FC = () => {
     return (
         <div className={styles.container}>
             <Navbar />
