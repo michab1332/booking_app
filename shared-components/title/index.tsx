@@ -10,7 +10,8 @@ const Title: React.FC<ITitle> = ({ text, color }) => {
     return (
         <div className={styles.wrapper}>
             <h2 style={{ backgroundColor: color }} className={styles.title}>{text}</h2>
-        </div>);
+        </div>
+    );
 }
 
 export default Title;
