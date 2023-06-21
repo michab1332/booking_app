@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import { StaticImageData } from "next/image";
+import Link from "next/link";
 
 import styles from "../../styles/home-page/GallerySection.module.css";
 import Title from "../../shared-components/title";
@@ -67,7 +68,7 @@ const GallerySection: React.FC = () => {
                 <div ref={galleryRef} className={styles.images}>
                     {data.map((item, index) => <GalleryItem item={item} sizeOfImage={sizeOfImage} key={index} />)}
                 </div>
-                <p className={styles.link}>zobacz więcej zdjęć</p>
+                <Link href="/gallery" className={styles.link}>zobacz więcej zdjęć</Link>
             </section>
         </div>
     );
