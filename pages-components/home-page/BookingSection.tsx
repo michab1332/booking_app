@@ -1,18 +1,13 @@
-import { useState, useEffect, ChangeEventHandler } from "react";
+import { useState, useEffect } from "react";
 
 import styles from "../../styles/home-page/BookingSection.module.css";
 import Title from "@/shared-components/title";
 import Button from "@/shared-components/button";
+import BookingItem from "./BookingItem";
 
 interface ITimetable {
     day: string;
     hours: string[];
-}
-
-interface IBookingItem {
-    stateValue: string;
-    value: string;
-    onChange: ChangeEventHandler<HTMLInputElement>
 }
 
 const timetable: ITimetable[] = [
@@ -33,15 +28,6 @@ const timetable: ITimetable[] = [
         hours: ["9:00", "18:00"]
     }
 ]
-
-const BookingItem: React.FC<IBookingItem> = ({ stateValue, value, onChange }) => {
-    return (
-        <label className={stateValue === value ? styles.label + " " + styles.checked : styles.label}>
-            <p className={styles.labelText}>{value}</p>
-            <input className={styles.radio} onChange={onChange} type="radio" name="day" value={value} checked={stateValue === value} />
-        </label>
-    );
-}
 
 const BookingSection: React.FC = () => {
     const [day, setDay] = useState("18 czerwca");
