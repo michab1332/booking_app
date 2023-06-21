@@ -49,7 +49,7 @@ const BookingSection: React.FC = () => {
     }, [day])
 
     return (
-        <div className={styles.container}>
+        <div id="booking" className={styles.container}>
             <section className={styles.wrapper}>
                 <Title text="ZAPISY" color="#F8F2F0" />
                 <form className={styles.form}>

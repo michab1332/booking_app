@@ -62,7 +62,7 @@ const GallerySection: React.FC = () => {
     }, []);
 
     return (
-        <div className={styles.container}>
+        <div id="gallery" className={styles.container}>
             <section className={styles.wrapper}>
                 <Title text="GALERIA" color="#F2E5E2" />
                 <div ref={galleryRef} className={styles.images}>

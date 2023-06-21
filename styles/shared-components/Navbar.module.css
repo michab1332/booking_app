@@ -30,6 +30,10 @@
     transition: .2s transform;
 }
 
+.menuItem a {
+    all: unset;
+}
+
 .menuItem:hover {
     transform: scale(1.1);
 }
