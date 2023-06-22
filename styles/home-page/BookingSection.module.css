@@ -68,3 +68,8 @@
 .label:hover .labelText {
     transform: scale(1.2);
 }
+
+.boxName {
+    width: 100%;
+    font-weight: bold;
+}

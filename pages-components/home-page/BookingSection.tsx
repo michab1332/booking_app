@@ -54,11 +54,13 @@ const BookingSection: React.FC = () => {
                 <Title text="ZAPISY" color="#F8F2F0" />
                 <form className={styles.form}>
                     <p className={styles.month}>Czerwiec 2023</p>
+                    <p className={styles.boxName}>Dostępne dni:</p>
                     <div className={styles.buttonsBox}>
                         {timetable.map((data, index) => {
                             return <BookingItem key={index} stateValue={day} value={data.day} onChange={onDayChange} />
                         })}
                     </div>
+                    <p className={styles.boxName}>Dostępne godziny:</p>
                     <div className={styles.buttonsBox}>
                         {hours.map((item, index) => <BookingItem key={index} stateValue={hour} value={item} onChange={onHourChange} />)}
                     </div>
