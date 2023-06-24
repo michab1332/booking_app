@@ -23,7 +23,7 @@ const GalleryItem: React.FC<IGalleryItem> = ({ item, sizeOfImage }) => {
             imageRef.current.style.height = `${sizeOfImage - 15}px`;
         }
     })
-    console.log(item)
+
     return (
         <div ref={imageRef} className={styles.image}>
             <Image fill src={item.imgUrl} alt={item.alt} />

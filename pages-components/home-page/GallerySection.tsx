@@ -41,11 +41,11 @@ const data: IData[] = [
         alt: "nails"
     },
     {
-        imgUrl: NailsImg,
+        imgUrl: "https://i.ibb.co/FX308dj/345247352-157636110629907-5430002066717505232-n.jpg",
         alt: "nails"
     },
     {
-        imgUrl: NailsImg,
+        imgUrl: "https://i.ibb.co/CBSd1TH/345276465-275686141654286-1483599838931111599-n.jpg",
         alt: "nails"
     },
 ];
