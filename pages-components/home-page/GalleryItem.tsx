@@ -1,11 +1,10 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import { StaticImageData } from "next/image";
 
 import styles from "../../styles/home-page/GallerySection.module.css";
 
 interface IData {
-    imgUrl: string | StaticImageData;
+    url: string;
     alt: string;
 }
 
@@ -26,7 +25,7 @@ const GalleryItem: React.FC<IGalleryItem> = ({ item, sizeOfImage }) => {
 
     return (
         <div ref={imageRef} className={styles.image}>
-            <Image fill src={item.imgUrl} alt={item.alt} />
+            <Image fill src={item.url} alt={item.url} />
         </div>
     );
 }
