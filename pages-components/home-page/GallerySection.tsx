@@ -9,7 +9,7 @@ import Title from "../../shared-components/title";
 import GalleryItem from "./GalleryItem";
 
 interface IData {
-    url: string | StaticImageData;
+    url: string;
     alt: string;
 }
 
