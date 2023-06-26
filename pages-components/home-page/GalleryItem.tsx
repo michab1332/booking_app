@@ -25,7 +25,7 @@ const GalleryItem: React.FC<IGalleryItem> = ({ item, sizeOfImage }) => {
 
     return (
         <div ref={imageRef} className={styles.image}>
-            <Image fill src={item.url} alt={item.url} loading="lazy" />
+            <Image sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill src={item.url} alt={item.url} loading="lazy" />
         </div>
     );
 }
