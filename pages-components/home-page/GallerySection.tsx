@@ -1,5 +1,4 @@
 import { useRef, useEffect, useState } from "react";
-import { StaticImageData } from "next/image";
 import Link from "next/link";
 import { collection, getDocs, query, limit } from "firebase/firestore";
 import { db } from "@/firebase/init";

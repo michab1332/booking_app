@@ -1,52 +1,55 @@
 import { useState, useEffect } from "react";
+import { collection, getDocs, query } from "firebase/firestore";
+import { db } from "@/firebase/init";
 
 import styles from "../../styles/home-page/BookingSection.module.css";
 import Title from "@/shared-components/title";
 import Button from "@/shared-components/button";
 import BookingItem from "./BookingItem";
 
-interface ITimetable {
+interface IShedule {
+    id: number;
     day: string;
     hours: string[];
 }
 
-const timetable: ITimetable[] = [
-    {
-        day: "18 czerwca",
-        hours: ["8:30", "18:00"]
-    },
-    {
-        day: "19 czerwca",
-        hours: ["11:20", "14:00"]
-    },
-    {
-        day: "21 czerwca",
-        hours: ["10:30", "15:00"]
-    },
-    {
-        day: "24 czerwca",
-        hours: ["9:00", "18:00"]
-    }
-]
-
 const BookingSection: React.FC = () => {
-    const [day, setDay] = useState("18 czerwca");
+    const [shedule, setShedule] = useState<IShedule[]>([]);
+    const [day, setDay] = useState("28 czerwca");
     const [hour, setHour] = useState("8:00");
     const [hours, setHours] = useState([]);
 
     const onDayChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setDay(e.target.value);
-    }
+    };
 
     const onHourChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setHour(e.target.value);
-    }
+    };
+
+    const getSheduleFromFirestore = async () => {
+        const sheduleRef = collection(db, "shedule");
+        const res = await getDocs(sheduleRef);
+        const sheduleArray = res.docs.map(doc => {
+            const data = doc.data();
+            return {
+                id: doc.id,
+                day: data.day,
+                hours: data.hours
+            };
+        });
+        setShedule(sheduleArray);
+    };
+
+    useEffect(() => {
+        getSheduleFromFirestore();
+    }, []);
 
     useEffect(() => {
         setHour("");
-        const chosedTime = timetable.filter(item => item.day === day)
+        const chosedTime = shedule.filter(item => item.day === day);
         setHours(chosedTime[0].hours);
-    }, [day])
+    }, [day]);
 
     return (
         <div id="booking" className={styles.container}>
@@ -56,13 +59,13 @@ const BookingSection: React.FC = () => {
                     <p className={styles.month}>Czerwiec 2023</p>
                     <p className={styles.boxName}>Dostępne dni:</p>
                     <div className={styles.buttonsBox}>
-                        {timetable.map((data, index) => {
+                        {shedule.map((data, index) => {
                             return <BookingItem key={index} stateValue={day} value={data.day} onChange={onDayChange} />
                         })}
                     </div>
                     <p className={styles.boxName}>Dostępne godziny:</p>
                     <div className={styles.buttonsBox}>
-                        {hours.map((item, index) => <BookingItem key={index} stateValue={hour} value={item} onChange={onHourChange} />)}
+                        {hours && hours.map((item, index) => <BookingItem key={index} stateValue={hour} value={item} onChange={onHourChange} />)}
                     </div>
                     <Button text="Zarezerwuj" />
                 </form>
