@@ -17,7 +17,7 @@ const BookingSection: React.FC = () => {
     const [shedule, setShedule] = useState<IShedule[]>([]);
     const [day, setDay] = useState("28 czerwca");
     const [hour, setHour] = useState("8:00");
-    const [hours, setHours] = useState([]);
+    const [hours, setHours] = useState<string[]>([]);
 
     const onDayChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setDay(e.target.value);
@@ -27,17 +27,23 @@ const BookingSection: React.FC = () => {
         setHour(e.target.value);
     };
 
+    const setHoursState = (arr: IShedule[]) => {
+        const chosedTime = arr.filter(item => item.day === day);
+        setHours(chosedTime[0]?.hours);
+    }
+
     const getSheduleFromFirestore = async () => {
         const sheduleRef = collection(db, "shedule");
         const res = await getDocs(sheduleRef);
-        const sheduleArray = res.docs.map(doc => {
+        const sheduleArray: IShedule[] = res.docs.map(doc => {
             const data = doc.data();
             return {
-                id: doc.id,
-                day: data.day,
-                hours: data.hours
+                id: Number(doc.id),
+                day: data.day as string,
+                hours: data.hours as string[]
             };
         });
+        setHoursState(sheduleArray);
         setShedule(sheduleArray);
     };
 
@@ -48,7 +54,7 @@ const BookingSection: React.FC = () => {
     useEffect(() => {
         setHour("");
         const chosedTime = shedule.filter(item => item.day === day);
-        setHours(chosedTime[0].hours);
+        setHours(chosedTime[0]?.hours);
     }, [day]);
 
     return (
@@ -65,7 +71,7 @@ const BookingSection: React.FC = () => {
                     </div>
                     <p className={styles.boxName}>Dostępne godziny:</p>
                     <div className={styles.buttonsBox}>
-                        {hours && hours.map((item, index) => <BookingItem key={index} stateValue={hour} value={item} onChange={onHourChange} />)}
+                        {hours?.length ? hours.map((item, index) => <BookingItem key={index} stateValue={hour} value={item} onChange={onHourChange} />) : "brak wolnych godzin"}
                     </div>
                     <Button text="Zarezerwuj" />
                 </form>

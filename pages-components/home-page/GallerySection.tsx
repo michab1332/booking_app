@@ -7,23 +7,24 @@ import styles from "../../styles/home-page/GallerySection.module.css";
 import Title from "../../shared-components/title";
 import GalleryItem from "./GalleryItem";
 
-interface IData {
+export interface ImageProps {
+    id: number;
     url: string;
-    alt: string;
+    alt?: string
 }
 
 const GallerySection: React.FC = () => {
     const galleryRef = useRef<HTMLDivElement>(null);
     const [sizeOfImage, setSizeOfImage] = useState<number>(0);
-    const [images, setImages] = useState<IData[]>([]);
+    const [images, setImages] = useState<ImageProps[]>([]);
 
     const getImages = async () => {
         const imagesRef = collection(db, "images");
         const q = query(imagesRef, limit(9));
         const res = await getDocs(q);
-        const imagesArray: any = res.docs.map(doc => ({
-            id: doc.id,
-            url: doc.data().url
+        const imagesArray: ImageProps[] = res.docs.map(doc => ({
+            id: Number(doc.id),
+            url: doc.data().url as string
         }))
         setImages(imagesArray);
     }

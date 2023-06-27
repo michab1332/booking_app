@@ -1,15 +1,11 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
+import { ImageProps } from "./GallerySection";
 
 import styles from "../../styles/home-page/GallerySection.module.css";
 
-interface IData {
-    url: string;
-    alt: string;
-}
-
 interface IGalleryItem {
-    item: IData;
+    item: ImageProps;
     sizeOfImage: number;
 }
 
