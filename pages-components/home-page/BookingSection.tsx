@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { collection, getDocs, query } from "firebase/firestore";
+import { collection, getDocs, query, onSnapshot } from "firebase/firestore";
 import { db } from "@/firebase/init";
 
 import styles from "../../styles/home-page/BookingSection.module.css";
@@ -32,23 +32,20 @@ const BookingSection: React.FC = () => {
         setHours(chosedTime[0]?.hours);
     }
 
-    const getSheduleFromFirestore = async () => {
-        const sheduleRef = collection(db, "shedule");
-        const res = await getDocs(sheduleRef);
-        const sheduleArray: IShedule[] = res.docs.map(doc => {
-            const data = doc.data();
-            return {
-                id: Number(doc.id),
-                day: data.day as string,
-                hours: data.hours as string[]
-            };
-        });
-        setHoursState(sheduleArray);
-        setShedule(sheduleArray);
-    };
-
     useEffect(() => {
-        getSheduleFromFirestore();
+        const unsubscribe = onSnapshot(collection(db, "shedule"), (res) => {
+            const sheduleArray: IShedule[] = res.docs.map(doc => {
+                const data = doc.data();
+                return {
+                    id: Number(doc.id),
+                    day: data.day as string,
+                    hours: data.hours as string[]
+                };
+            });
+            setHoursState(sheduleArray);
+            setShedule(sheduleArray);
+        });
+        return unsubscribe;
     }, []);
 
     useEffect(() => {
