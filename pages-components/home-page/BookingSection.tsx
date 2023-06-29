@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { collection, getDocs, query, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot, query, where, getDoc } from "firebase/firestore";
 import { db } from "@/firebase/init";
 
 import styles from "../../styles/home-page/BookingSection.module.css";
@@ -15,8 +15,8 @@ interface IShedule {
 
 const BookingSection: React.FC = () => {
     const [shedule, setShedule] = useState<IShedule[]>([]);
-    const [day, setDay] = useState("28 czerwca");
-    const [hour, setHour] = useState("8:00");
+    const [day, setDay] = useState("");
+    const [hour, setHour] = useState("");
     const [hours, setHours] = useState<string[]>([]);
 
     const onDayChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,11 +26,6 @@ const BookingSection: React.FC = () => {
     const onHourChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setHour(e.target.value);
     };
-
-    const setHoursState = (arr: IShedule[]) => {
-        const chosedTime = arr.filter(item => item.day === day);
-        setHours(chosedTime[0]?.hours);
-    }
 
     useEffect(() => {
         const unsubscribe = onSnapshot(collection(db, "shedule"), (res) => {
@@ -42,16 +37,23 @@ const BookingSection: React.FC = () => {
                     hours: data.hours as string[]
                 };
             });
-            setHoursState(sheduleArray);
+            setDay(sheduleArray[0].day);
             setShedule(sheduleArray);
         });
+
         return unsubscribe;
     }, []);
 
     useEffect(() => {
         setHour("");
-        const chosedTime = shedule.filter(item => item.day === day);
-        setHours(chosedTime[0]?.hours);
+
+        const q = query(collection(db, "shedule"), where("day", "==", day));
+        const unsubscribe = onSnapshot(q, (res) => {
+            const hoursArray = res.docs[0]?.data().hours;
+            setHours(hoursArray);
+        });
+
+        return unsubscribe;
     }, [day]);
 
     return (
