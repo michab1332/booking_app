@@ -18,7 +18,7 @@ const GallerySection: React.FC = () => {
     const [sizeOfImage, setSizeOfImage] = useState<number>(0);
     const [images, setImages] = useState<ImageProps[]>([]);
 
-    const getImages = async () => {
+    const getImages = async (): Promise<void> => {
         const imagesRef = collection(db, "images");
         const q = query(imagesRef, limit(9));
         const res = await getDocs(q);
