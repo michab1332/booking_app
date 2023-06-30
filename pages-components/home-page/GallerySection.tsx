@@ -1,33 +1,15 @@
 import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
-import { collection, getDocs, query, limit } from "firebase/firestore";
-import { db } from "@/firebase/init";
+import useGalleryImagesFromFirestore from "@/hooks/home-page/useGalleryImagesFromFirestore";
 
 import styles from "../../styles/home-page/GallerySection.module.css";
 import Title from "../../shared-components/title";
 import GalleryItem from "./GalleryItem";
 
-export interface ImageProps {
-    id: number;
-    url: string;
-    alt?: string
-}
-
 const GallerySection: React.FC = () => {
     const galleryRef = useRef<HTMLDivElement>(null);
     const [sizeOfImage, setSizeOfImage] = useState<number>(0);
-    const [images, setImages] = useState<ImageProps[]>([]);
-
-    const getImages = async (): Promise<void> => {
-        const imagesRef = collection(db, "images");
-        const q = query(imagesRef, limit(9));
-        const res = await getDocs(q);
-        const imagesArray: ImageProps[] = res.docs.map(doc => ({
-            id: Number(doc.id),
-            url: doc.data().url as string
-        }))
-        setImages(imagesArray);
-    }
+    const images = useGalleryImagesFromFirestore();
 
     useEffect(() => {
         if (galleryRef.current) {
@@ -35,10 +17,6 @@ const GallerySection: React.FC = () => {
             setSizeOfImage(galleryDivWidth / 3);
         }
     }, []);
-
-    useEffect(() => {
-        getImages();
-    }, [])
 
     return (
         <div id="gallery" className={styles.container}>
