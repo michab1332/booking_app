@@ -8,12 +8,12 @@ export interface ImageProps {
     alt?: string
 }
 
-const useGalleryImagesFromFirestore = () => {
+const useGalleryImagesFromFirestore = (numberOfImages: number) => {
     const [images, setImages] = useState<ImageProps[]>([]);
 
     const getImages = async (): Promise<void> => {
         const imagesRef = collection(db, "images");
-        const q = query(imagesRef, limit(9));
+        const q = query(imagesRef, limit(numberOfImages));
         const res = await getDocs(q);
         const imagesArray: ImageProps[] = res.docs.map(doc => ({
             id: Number(doc.id),
